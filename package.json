@@ -1,0 +1,6 @@
+{
+  "name": "javier-cano-larumbe",
+  "private": true,
+  "type": "module",
+  "scripts": { "build": "node build.mjs" }
+}

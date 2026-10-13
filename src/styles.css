@@ -1,0 +1,236 @@
+  :root{
+    --paper:#edebe5;
+    --ink:#1d1c1a;
+    --mute:#7d7a74;
+    --rule:#d3d0c8;
+    --grease:#c8362a;          /* grease pencil red */
+    --edge:#d99a3a;            /* film edge-code orange */
+    --tape:rgba(226,212,166,.62);
+    --mono:"Courier Prime", "Courier New", monospace;
+    --hand:"Reenie Beanie", "Segoe Print", cursive;
+    --gutter:32px;
+    --top:64px;
+    --ease:cubic-bezier(.2,.7,.2,1);
+    --noise:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    /* filmstrip sizes */
+    --cell-w:150px; --cell-w-active:520px; --cell-gap:12px;
+  }
+  @media (max-width:1280px){ :root{ --cell-w:120px; --cell-w-active:420px; } }
+  @media (max-width:800px){ :root{ --gutter:18px; --top:56px; } }
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:var(--mono); font-size:14px; line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{ /* paper grain */
+    content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:var(--noise); opacity:.26; mix-blend-mode:multiply;
+  }
+  body::after{ /* light falloff */
+    content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:radial-gradient(120% 90% at 30% 10%, rgba(255,255,255,.35), rgba(0,0,0,0) 55%, rgba(0,0,0,.06) 100%);
+  }
+  body > *{position:relative; z-index:1}
+  a{color:inherit; text-decoration:none}
+  button{font:inherit; color:inherit; background:none; border:0; padding:0; cursor:pointer}
+  img{display:block; max-width:100%; height:auto}
+  ::selection{background:var(--grease); color:var(--paper)}
+  :focus-visible{outline:1.5px dashed var(--grease); outline-offset:3px}
+
+  /* handwriting: the reference is all caps, thin pen */
+  .vh{position:absolute!important; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); clip-path:inset(50%); white-space:nowrap}
+  .hand{font-family:var(--hand); font-weight:400; text-transform:uppercase; letter-spacing:.03em}
+
+  /* ---------- top bar ---------- */
+  .top{
+    position:fixed; inset:0 0 auto 0; height:var(--top); z-index:20;
+    display:grid; grid-template-columns:1fr auto 1fr; align-items:center;
+    padding:0 var(--gutter);
+    background:linear-gradient(var(--paper) 60%, rgba(237,235,229,0));
+  }
+  .brand{display:flex; align-items:baseline; gap:12px; font-size:15px; letter-spacing:.02em}
+  .brand .role{font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--mute)}
+  .nav{display:flex; gap:24px; font-size:14px; letter-spacing:.02em}
+  .nav a{position:relative; padding:4px 0}
+  .nav a::after{
+    content:""; position:absolute; left:-2px; right:-2px; bottom:-1px; height:6px;
+    background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 6' preserveAspectRatio='none'><path d='M1 4 C 20 2, 40 5, 60 3 S 90 2, 99 4' fill='none' stroke='%23c8362a' stroke-width='1.6' stroke-linecap='round'/></svg>") no-repeat center/100% 100%;
+    opacity:0; transform:scaleX(.6); transform-origin:left; transition:opacity .25s, transform .4s var(--ease);
+  }
+  .nav a:hover::after, .nav a[aria-current="page"]::after{opacity:1; transform:scaleX(1)}
+
+  /* ---------- pages ---------- */
+  .page{display:none; min-height:100vh; padding:var(--top) var(--gutter) 60px}
+  .page.is-active{display:block}
+  #page-work{padding-bottom:0}
+
+  /* ---------- work: index | filmstrip | ficha ---------- */
+  .work{display:grid; grid-template-columns:270px minmax(0,1fr) 280px; gap:0 32px; height:calc(100vh - var(--top)); padding-top:14px; padding-bottom:46px}
+
+  /* index: notebook margin, years in the margin */
+  .index{align-self:center; padding-bottom:20px}
+  .index .note{font-family:var(--hand); text-transform:uppercase; letter-spacing:.03em; font-weight:400; font-size:34px; line-height:1; margin:0 0 22px 64px}
+  .group{margin:0 0 18px}
+  .group h2{margin:0 0 3px 64px; font-weight:400; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--mute)}
+  .group ul{list-style:none; margin:0; padding:0}
+  .row{position:relative; display:grid; grid-template-columns:50px 1fr; align-items:baseline; gap:0 14px; width:100%; text-align:left; padding:3px 0}
+  .row::before{content:""; position:absolute; left:52px; top:-5px; bottom:-5px; width:1px; background:rgba(200,54,42,.35)}
+  .row .year{font-size:11px; color:var(--mute); text-align:right; letter-spacing:.04em}
+  .row .title{position:relative; display:inline-block; font-size:15px; line-height:1.35; padding:0 6px 0 3px; margin-left:-3px}
+  .row .title svg{position:absolute; left:-6px; top:-7px; width:calc(100% + 12px); height:calc(100% + 14px); overflow:visible; pointer-events:none}
+  .row .title svg path{fill:none; stroke:var(--grease); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:1; stroke-dashoffset:1; opacity:0; mix-blend-mode:multiply; transition:stroke-dashoffset .001s, opacity .15s}
+  .row.is-current .title svg path{stroke-dashoffset:0; opacity:.85; transition:stroke-dashoffset .55s var(--ease), opacity .05s}
+
+  /* filmstrip */
+  .strip-wrap{position:relative; height:100%; overflow:hidden}
+  .strip{position:absolute; left:50%; top:0; display:flex; flex-direction:column; align-items:center; gap:var(--cell-gap); transform:translate(-50%,0); will-change:transform}
+  .cell{position:relative; display:block; width:var(--cell-w); flex:none; transform:rotate(var(--tilt)); transition:width .7s var(--ease), transform .7s var(--ease)}
+  .cell .print{position:relative; display:block; padding:4px; background:#f7f6f2; transition:padding .7s var(--ease)}
+  .cell .print::after{content:""; position:absolute; inset:0; background-image:var(--noise); background-size:160px; opacity:.32; mix-blend-mode:multiply; pointer-events:none} /* the print's own grain */
+  .cell img{width:100%; aspect-ratio:16/10; object-fit:cover; filter:saturate(.85) contrast(1.02); opacity:.8; transition:opacity .4s}
+  .cell:hover img{opacity:1}
+  .cell.is-active{width:var(--cell-w-active); transform:translateX(-14%) rotate(var(--tilt-a)); z-index:2}
+  .cell.is-active .print{padding:8px 8px 10px}
+  .cell.is-active img{opacity:1}
+  /* rotated tag beside the big still, like the reference */
+  .cell .mcap{display:none}
+  .cell .tag{position:absolute; left:-26px; bottom:6px; writing-mode:vertical-rl; transform:rotate(180deg); font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink); white-space:nowrap; opacity:0; transition:opacity .3s}
+  .cell.is-active .tag{opacity:1; transition-delay:.25s}
+  /* edge labels */
+  .edge-label{position:absolute; top:50%; writing-mode:vertical-rl; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--mute); white-space:nowrap; pointer-events:none}
+  .edge-label.r{right:0; transform:translateY(-50%)}
+
+  /* ficha */
+  .ficha{align-self:center; padding-bottom:60px; max-height:100%; overflow:auto; scrollbar-width:none}
+  .ficha::-webkit-scrollbar{display:none}
+  .ficha .h{font-family:var(--hand); text-transform:uppercase; letter-spacing:.03em; font-size:36px; line-height:.95; margin:0 0 8px}
+  .ficha .h .alt{color:var(--mute)}
+  .ficha .eyebrow{font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--mute); margin:0 0 14px}
+  .ficha .synopsis{margin:0 0 14px; font-size:13px; line-height:1.6}
+  .ficha .credits{margin:0; font-size:11px; line-height:1.75; color:var(--mute); padding-top:12px; border-top:1px dashed var(--rule)}
+  .ficha .credits b{font-weight:400; color:var(--ink)}
+  .ficha .margin-note{margin:14px 0 0; font-family:var(--hand); text-transform:uppercase; letter-spacing:.03em; font-size:21px; line-height:1.05}
+  .ficha .margin-note small{display:block; font-size:16px; color:var(--mute); margin-top:2px}
+  .ficha .play{display:inline-block; margin-top:16px; font-family:var(--hand); text-transform:uppercase; letter-spacing:.03em; font-size:26px; color:var(--grease)}
+  .ficha .play:hover{text-decoration:underline}
+  .laurels{display:flex; flex-wrap:wrap; gap:10px 12px; margin:16px 0 0; padding:0; list-style:none}
+  .stamp{display:inline-flex; flex-direction:column; align-items:center; padding:4px 8px 3px; border:1.5px solid var(--grease); color:var(--grease); font-size:8.5px; letter-spacing:.14em; text-transform:uppercase; line-height:1.35; transform:rotate(var(--r,-2deg)); opacity:.82; mix-blend-mode:multiply}
+  .stamp small{font-size:8px; letter-spacing:.06em; text-transform:none}
+  .stamp:nth-child(2n){--r:1.5deg} .stamp:nth-child(3n){--r:-1deg}
+  .ficha.is-swapping > *{animation:rise .45s var(--ease) both}
+  .ficha.is-swapping > :nth-child(2){animation-delay:.04s}
+  .ficha.is-swapping > :nth-child(3){animation-delay:.08s}
+  .ficha.is-swapping > :nth-child(4){animation-delay:.12s}
+  .ficha.is-swapping > :nth-child(5){animation-delay:.16s}
+  @keyframes rise{from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:none}}
+
+  /* ---------- about: one notebook page — text left, one print right, contact below ---------- */
+  .about{display:grid; grid-template-columns:minmax(0, 6fr) minmax(0, 6fr); gap:40px 72px; padding-top:56px; max-width:1240px; margin:0 auto}
+  .bio{max-width:54ch; padding-left:26px; position:relative}
+  .bio::before{content:""; position:absolute; left:12px; top:6px; bottom:0; width:1px; background:rgba(200,54,42,.35)}
+  .bio h1{margin:0 0 6px; font-family:var(--hand); text-transform:uppercase; letter-spacing:.03em; font-weight:400; font-size:clamp(34px, 3.9vw, 56px); line-height:.95; white-space:nowrap}
+  .bio .lead{font-family:var(--hand); text-transform:uppercase; letter-spacing:.03em; font-size:28px; color:var(--mute); margin:0 0 26px; line-height:1}
+  .bio p{margin:0 0 14px; font-size:14px; line-height:1.7}
+  .portrait{margin:8px 0 0; align-self:start; justify-self:end; width:min(100%, 440px); transform:rotate(1.4deg); transition:transform .6s var(--ease)}
+  .portrait:hover{transform:rotate(0)}
+  .portrait .print{position:relative; display:block; padding:8px 8px 10px; background:#f7f6f2}
+  .portrait .print::after{content:""; position:absolute; inset:0; background-image:var(--noise); background-size:160px; opacity:.32; mix-blend-mode:multiply; pointer-events:none}
+  .portrait img{aspect-ratio:3/2; object-fit:cover; filter:saturate(.85) contrast(1.02)}
+  .contact{grid-column:1 / -1; margin-top:56px; padding-top:26px; border-top:1px dashed var(--rule); display:grid; grid-template-columns:minmax(0,6fr) minmax(0,6fr); gap:24px 72px; align-items:start}
+  .contact h2{margin:0; padding-left:26px; font-family:var(--hand); text-transform:uppercase; letter-spacing:.03em; font-weight:400; font-size:44px; line-height:1}
+  .contact .who{display:grid; grid-template-columns:repeat(2, auto); justify-content:start; gap:28px 72px}
+  .contact .who h3{margin:0 0 6px; font-weight:400; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--mute)}
+  .contact .who p{margin:0; font-size:13px; line-height:1.9}
+  .contact .who a{border-bottom:1px solid var(--rule); transition:border-color .2s, color .2s}
+  .contact .who a:hover{color:var(--grease); border-color:var(--grease)}
+
+  /* ---------- viewer ---------- */
+  .viewer{position:fixed; inset:0; z-index:40; background:var(--paper); display:none; overflow:auto; padding:var(--top) var(--gutter) 60px}
+  .viewer::before{content:""; position:fixed; inset:0; background-image:var(--noise); opacity:.26; mix-blend-mode:multiply; pointer-events:none}
+  .viewer.is-open{display:block; animation:fadein .3s var(--ease)}
+  @keyframes fadein{from{opacity:0} to{opacity:1}}
+  .viewer > *{position:relative}
+  .viewer .bar{position:fixed; inset:0 0 auto 0; height:var(--top); display:flex; align-items:center; justify-content:space-between; padding:0 var(--gutter); background:var(--paper); z-index:2}
+  .viewer .bar .crumb{font-size:14px}
+  .viewer .bar .crumb a, .viewer .bar .crumb span{color:var(--mute)}
+  .viewer .bar .crumb a{padding:10px 0}
+  .viewer .bar .crumb a:hover{color:var(--ink)}
+  .viewer .bar .crumb a::after{content:" / "; color:var(--mute)}
+  .viewer .bar .crumb span::after{content:" / "; color:var(--mute)}
+  .viewer .bar .count{font-size:11px; letter-spacing:.1em; color:var(--mute)}
+  .viewer .bar-r{display:flex; gap:10px; align-items:center}
+  .viewer .close{font-size:12px; letter-spacing:.12em; text-transform:uppercase; padding:16px 0 16px 18px; margin-right:-4px}
+  .viewer .close:hover{color:var(--grease)}
+  .player-wrap{max-width:1180px; margin:22px auto 0; background:#141412; padding:18px 12px; position:relative; box-shadow:0 1px 1px rgba(0,0,0,.2), 0 16px 30px -16px rgba(0,0,0,.5)}
+  .player-wrap .edge{position:absolute; left:14px; right:14px; display:flex; justify-content:space-between; font-size:9px; letter-spacing:.16em; color:var(--edge); text-transform:uppercase}
+  .player-wrap .edge.t{top:4px} .player-wrap .edge.b{bottom:4px}
+  .player-wrap .edge a{color:var(--edge); border-bottom:1px solid transparent} .player-wrap .edge a:hover{border-color:var(--edge)}
+  .player{position:relative; aspect-ratio:16/9; background:#000; overflow:hidden}
+  .player img{width:100%; height:100%; object-fit:cover; opacity:.9}
+  .player iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
+  .player .big{position:absolute; inset:0; display:grid; place-items:center}
+  .player .big span{font-size:11px; letter-spacing:.14em; text-transform:uppercase; background:var(--paper); padding:12px 20px; transition:transform .3s var(--ease)}
+  .player .big:hover span{transform:scale(1.04)}
+  .viewer .ficha{max-width:1180px; margin:26px auto 0; display:grid; grid-template-columns:1fr 1fr; gap:8px 40px; align-self:auto}
+  .viewer .ficha .h{font-size:44px}
+  .viewer .ficha .credits{grid-column:2; grid-row:1 / span 4; text-align:right; border:0; padding:0}
+  .viewer .ficha .laurels{grid-column:1 / -1}
+  .viewer .v-nav{max-width:1180px; margin:40px auto 0; display:flex; justify-content:space-between; font-family:var(--hand); text-transform:uppercase; font-size:26px}
+  .viewer .v-nav a{padding:8px 0}
+  .viewer .v-nav a:hover{color:var(--grease)}
+
+  /* ---------- shark cursor: the napkin drawing, as is ---------- */
+  .cur{display:none}
+  @media (hover:hover) and (pointer:fine){
+    body.has-cur, body.has-cur a, body.has-cur button{cursor:none}
+    .cur{display:block; position:fixed; left:0; top:0; z-index:1000; pointer-events:none; width:26px; height:40px; opacity:0; transition:opacity .2s; will-change:transform}
+    .cur.is-on{opacity:1}
+    .cur .part{position:absolute; inset:0; background:url("/assets/shark.png") no-repeat center/100% 100%; transform-origin:50% 0; transition:transform .14s var(--ease)}
+    .cur.is-bite .part{transform:scale(.88)}   /* a small press, the drawing stays whole */
+  }
+
+  /* ---------- footer ---------- */
+  .foot{padding:0 var(--gutter) 20px; margin-top:-30px; display:flex; justify-content:space-between; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--mute)}
+  .foot a:hover{color:var(--ink)}
+  body[data-page="work"] .foot{position:fixed; left:0; right:0; bottom:0; margin:0; padding-bottom:14px; z-index:5; pointer-events:none}
+  body[data-page="work"] .foot a{pointer-events:auto}
+
+  /* ---------- mobile: the strip becomes the page itself ---------- */
+  @media (max-width:800px){
+    .top{grid-template-columns:1fr auto; background:linear-gradient(var(--paper) 75%, rgba(237,235,229,0))}
+    .brand{font-size:14px}
+    .brand .role{display:none}
+    .nav{gap:18px; font-size:14px; justify-self:end}
+    #page-work{padding:calc(var(--top) + 6px) var(--gutter) 40px}
+    .work{display:block; height:auto; padding-top:0}
+    .index, .ficha, .edge-label{display:none}
+    .index .note{margin-left:0}
+    .strip-wrap{height:auto; overflow:visible}
+    .strip{position:static; display:flex; flex-direction:column; align-items:stretch; gap:34px; transform:none !important; padding:6px 10px 0}
+    .cell{width:100% !important; transform:rotate(var(--tilt)) !important; text-align:left}
+    .cell .print{padding:6px 6px 8px}
+    .cell img{opacity:1}
+    .cell .tag{display:none}
+    .cell .mcap{display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin:12px 4px 0}
+    .cell .mcap b{font-family:var(--hand); font-weight:400; text-transform:uppercase; letter-spacing:.03em; font-size:24px; line-height:1}
+    .cell .mcap i{font-style:normal; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--mute); white-space:nowrap}
+    .about{grid-template-columns:1fr; gap:28px; padding-top:22px}
+    .bio{padding-left:18px} .bio::before{left:6px}
+    .bio h1{font-size:clamp(26px, 9.6vw, 40px)} .bio .lead{font-size:22px}
+    .portrait{width:100%; justify-self:stretch; transform:rotate(-1deg)}
+    .contact{grid-template-columns:1fr; gap:18px; margin-top:40px}
+    .contact h2{padding-left:18px; font-size:36px}
+    .contact .who{grid-template-columns:1fr; gap:22px}
+    .viewer .ficha{grid-template-columns:1fr}
+    .viewer .ficha .credits{grid-column:1; grid-row:auto; text-align:left}
+    .viewer .ficha .h{font-size:34px}
+    .viewer .bar .crumb span{display:none}
+    body[data-page="work"] .foot{position:static}
+    .foot{margin-top:0}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{transition:none !important; animation:none !important}
+  }
