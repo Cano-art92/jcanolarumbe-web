@@ -11,11 +11,11 @@ export const SITE = {
   vimeo: { label: 'vimeo.com/jcanolarumbe', url: 'https://vimeo.com/jcanolarumbe' },
   imdb: 'https://www.imdb.com/name/nm6407866/',           // linked from his agency profile — confirm
   agency: { name: 'IPD Talent Agency', email: 'hello@ipdtalent.com', url: 'https://ipdtalent.com/talentos/javier-cano/' },
-  /* About text. Draft built from his agency profile and press — replace with Javier's own words when ready. */
+  /* About text: Javier's own words (13/10/2026). */
   bio: [
     'Javier Cano Larumbe is a film director and screenwriter based in Barcelona. He studied film direction at ESCAC, where he made his short film <em>Interferencias</em>.',
     'His latest short film, <em>Vacío (Void)</em>, executive produced by J.A. Bayona and starring María Valverde, premiered in Spain at ALCINE and has screened at festivals including Raindance and the Cleveland International Film Festival.',
-    'In advertising he has directed work for Zara, Boboli and Maragua Studio, and has worked as second unit director for J.A. Bayona, including Cupra’s <em>There’s No Second</em>. His work has been selected at La Jolla International Fashion Film Festival, Berlin Commercial, Bokeh and Aesthetica. He is currently writing his first feature film.',
+    'In advertising he has directed work for Zara, Cupra, Boboli, Fundació la Caixa and Maragua Studio, and has worked as second unit director for J.A. Bayona, including Cupra’s <em>There’s No Second</em>. His work has been selected at La Jolla International Fashion Film Festival, Berlin Commercial, Bokeh and Aesthetica. He is currently writing his first feature film.',
   ],
 };
 
@@ -50,18 +50,18 @@ export const PROJECTS = [
     summary: 'Zara — Leap, A New Beginning, a fashion commercial directed by Javier Cano Larumbe and produced by El Estudio (2024).',
     credits: [['Directed by', 'Javier Cano Larumbe'], ['Produced by', 'El Estudio']], laurels: [] },
 
+  { slug: 'boboli-i-change', title: 'Boboli — I Change', brand: 'Boboli', group: 'commercial', kind: 'Commercial', genre: 'Kids fashion', year: 2022, length: '1 min 18',
+    vimeo: '736104117', seconds: 78, uploaded: '2022-08-03',
+    thumb: thumb('1485676965-0cc2f8f641fc9e7f64fa7b6bcb31e989ef8bf85745b3c362a794a6ad56efa7ef'),
+    summary: 'Boboli — I Change, a commercial for Boboli directed by Javier Cano Larumbe. Agency Soon In Tokyo, produced by Mamma Team (2022).',
+    credits: [['Directed by', 'Javier Cano Larumbe'], ['Agency', 'Soon In Tokyo'], ['Produced by', 'Mamma Team']], laurels: [] },
+
   { slug: 'maragua-studio-saphi', title: 'Maragua Studio — Saphi', brand: 'Maragua Studio', group: 'commercial', kind: 'Fashion film', genre: 'Dance', year: 2022, length: '2 min 35',
     vimeo: '698590978', seconds: 155, uploaded: '2022-04-12',
     thumb: thumb('1428616436-3389cf3252a70bae03386bf556ac6c90d51aaca09b3cc509780c8e9d5fd8f651'),
     synopsis: 'Saphi is an adventure to our origins, back to our roots and the deepest of our essence. A vision of free femininity in a journey which connects our inner selves through nature and the world around us.',
     summary: 'Saphi, a fashion film for Maragua Studio written and directed by Javier Cano Larumbe, with dancer Paula Losada (2022).',
     credits: [['Directed by', 'Javier Cano Larumbe'], ['Dancer', 'Paula Losada'], ['Produced by', 'whitemoose']], laurels: [] },
-
-  { slug: 'boboli-the-bench-where-we-all-fit', title: 'Boboli — The Bench Where We All Fit', brand: 'Boboli', group: 'commercial', kind: 'Commercial', genre: 'Kids fashion', year: 2024, length: '1 min 33',
-    vimeo: '899795066', seconds: 93, uploaded: '2024-01-04',
-    thumb: thumb('1777640122-5fab158306d9aa02743c24f7651e5fe9461c5b1873be82fa8f9252d25b35c0ea'),
-    summary: 'Boboli — The Bench Where We All Fit, a commercial for Boboli directed by Javier Cano Larumbe. Agency Soon In Tokyo, produced by Mamma Team (2024).',
-    credits: [['Directed by', 'Javier Cano Larumbe'], ['Agency', 'Soon In Tokyo'], ['Produced by', 'Mamma Team']], laurels: [] },
 
   { slug: 'monte-vista-drive-pale-blue-coal-black', title: 'Monte Vista Drive — Pale Blue / Coal Black', group: 'music', kind: 'Music video', genre: 'Indie', year: 2024, length: '2 min 11',
     vimeo: '899890899', seconds: 131, uploaded: '2024-01-04',
