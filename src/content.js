@@ -15,7 +15,7 @@ export const SITE = {
   bio: [
     'Javier Cano Larumbe is a film director and screenwriter based in Barcelona. He studied film direction at ESCAC, where he made his short film <em>Interferencias</em>.',
     'His latest short film, <em>Vacío (Void)</em>, executive produced by J.A. Bayona and starring María Valverde, premiered in Spain at ALCINE and has screened at festivals including Raindance and the Cleveland International Film Festival.',
-    'In advertising he has directed work for Zara, Boboli, Maragua Studio and Fundación La Caixa, and has worked as second unit director for J.A. Bayona, including Cupra’s <em>There’s No Second</em>. His work has been selected at La Jolla International Fashion Film Festival, Berlin Commercial, Bokeh and Aesthetica. He is currently writing his first feature film.',
+    'In advertising he has directed work for Zara, Boboli and Maragua Studio, and has worked as second unit director for J.A. Bayona, including Cupra’s <em>There’s No Second</em>. His work has been selected at La Jolla International Fashion Film Festival, Berlin Commercial, Bokeh and Aesthetica. He is currently writing his first feature film.',
   ],
 };
 

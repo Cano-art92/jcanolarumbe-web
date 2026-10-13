@@ -25,7 +25,7 @@ const orgs = str => str ? people(str).map(name => ({ '@type': 'Organization', na
 const PERSON = {
   '@type': 'Person', '@id': `${U}/#person`,
   name: SITE.name, alternateName: SITE.shortName, jobTitle: 'Film director', url: `${U}/`, image: U + SITE.portrait,
-  description: `${SITE.name} is a film director and screenwriter based in Barcelona, director of the short film Vacío (Void), executive produced by J.A. Bayona, and of commercials for Zara, Boboli and Fundación La Caixa.`,
+  description: `${SITE.name} is a film director and screenwriter based in Barcelona, director of the short film Vacío (Void), executive produced by J.A. Bayona, and of commercials for Zara and Boboli.`,
   homeLocation: { '@type': 'Place', name: 'Barcelona, Spain' },
   alumniOf: { '@type': 'EducationalOrganization', name: 'ESCAC – Escola Superior de Cinema i Audiovisuals de Catalunya' },
   knowsAbout: ['Film direction', 'Short films', 'Commercials', 'Fashion films', 'Music videos', 'Screenwriting'],
@@ -79,7 +79,7 @@ function jsonld(route) {
 }
 
 /* ---------------- page shell ---------------- */
-const HOME_DESC = `${SITE.name} is a film director based in Barcelona. Short films, including the horror short Vacío (Void), executive produced by J.A. Bayona, and commercials for Zara, Cupra, Boboli and Fundación La Caixa.`;
+const HOME_DESC = `${SITE.name} is a film director based in Barcelona. Short films, including the horror short Vacío (Void), executive produced by J.A. Bayona, and commercials for Zara, Cupra and Boboli.`;
 const ABOUT_DESC = `About ${SITE.name}, film director and screenwriter based in Barcelona. Represented by ${SITE.agency.name} (${SITE.agency.email}).`;
 
 function page(route) {
@@ -211,7 +211,7 @@ Sitemap: ${U}/sitemap.xml
 const strip = h => h.replace(/<[^>]+>/g, '');
 writeFileSync(`${OUT}/llms.txt`, `# ${SITE.name}
 
-> ${SITE.name} (also credited as ${SITE.shortName} and J. Cano Larumbe) is a film director and screenwriter based in Barcelona, Spain. He directed the horror short film Vacío (Void, 2025), executive produced by J.A. Bayona, and commercials and fashion films for Zara, Boboli, Maragua Studio and Fundación La Caixa. He is represented by ${SITE.agency.name}.
+> ${SITE.name} (also credited as ${SITE.shortName} and J. Cano Larumbe) is a film director and screenwriter based in Barcelona, Spain. He directed the horror short film Vacío (Void, 2025), executive produced by J.A. Bayona, and commercials and fashion films for Zara, Boboli and Maragua Studio. He is represented by ${SITE.agency.name}.
 
 ## About
 
