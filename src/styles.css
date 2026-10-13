@@ -182,13 +182,13 @@
   .viewer .v-nav a{padding:8px 0}
   .viewer .v-nav a:hover{color:var(--grease)}
 
-  /* ---------- shark cursor: the napkin drawing, as is ---------- */
+  /* ---------- shark cursor: the napkin drawing, in grease-pencil red ---------- */
   .cur{display:none}
   @media (hover:hover) and (pointer:fine){
     body.has-cur, body.has-cur a, body.has-cur button{cursor:none}
     .cur{display:block; position:fixed; left:0; top:0; z-index:1000; pointer-events:none; width:26px; height:40px; opacity:0; transition:opacity .2s; will-change:transform}
     .cur.is-on{opacity:1}
-    .cur .part{position:absolute; inset:0; background:url("/assets/shark.png") no-repeat center/100% 100%; transform-origin:50% 0; transition:transform .14s var(--ease)}
+    .cur .part{position:absolute; inset:0; background:var(--grease); -webkit-mask:url("/assets/shark.png") no-repeat center/100% 100%; mask:url("/assets/shark.png") no-repeat center/100% 100%; transform-origin:50% 0; transition:transform .14s var(--ease)}
     .cur.is-bite .part{transform:scale(.88)}   /* a small press, the drawing stays whole */
   }
 

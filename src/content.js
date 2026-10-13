@@ -38,12 +38,6 @@ export const PROJECTS = [
     note: ['“A stunning 14-minute short that achieves more than many features do in a two-hour runtime.”', 'Cinerama'],
     laurels: [['Official Selection', 'Cleveland International Film Festival'], ['Official Selection', 'Raindance Film Festival'], ['Official Selection', 'Mecal Pro Barcelona 2026'], ['Official Finalist', 'CortoBerlanga'], ['Official Selection', 'Centelles en Curt FICC'], ['Sección Paralela', 'Festival de Ciudad Real'], ['Best Horror Short', 'Filmsere La Florida 2026'], ['Official Selection', 'Montevideo Fantástico XVI'], ['Selección Oficial', 'Valdivia']] },
 
-  { slug: 'inmortales', title: 'Inmortales', group: 'film', kind: 'Short film', genre: 'Drama', year: 2023, length: '2 min 11',
-    vimeo: '844678129', seconds: 131, uploaded: '2023-07-12',
-    thumb: thumb('1699195361-dc87eb96bc1754bf26708091c28a0b8f8467de32027aa569f231a51ea28253c4'),
-    summary: 'Inmortales, a short film directed by Javier Cano Larumbe (2023).',
-    credits: [['Directed by', 'Javier Cano Larumbe']], laurels: [] },
-
   { slug: 'cupra-theres-no-second', title: 'Cupra — There’s No Second', brand: 'Cupra', group: 'commercial', kind: 'Commercial', genre: 'Automotive', year: 2024, length: '2 min 09',
     vimeo: '1010562750', seconds: 129, uploaded: '2024-09-18', secondUnit: true,
     thumb: thumb('1927944764-1a4feb0639f6012b9c6dd8d1a7d881879b4844f9def301af3dfd1843f7d0674f'),
@@ -56,24 +50,12 @@ export const PROJECTS = [
     summary: 'Zara — Leap, A New Beginning, a fashion commercial directed by Javier Cano Larumbe and produced by El Estudio (2024).',
     credits: [['Directed by', 'Javier Cano Larumbe'], ['Produced by', 'El Estudio']], laurels: [] },
 
-  { slug: 'boboli-i-change', title: 'Boboli — I Change', brand: 'Boboli', group: 'commercial', kind: 'Commercial', genre: 'Kids fashion', year: 2022, length: '1 min 18',
-    vimeo: '736104117', seconds: 78, uploaded: '2022-08-03',
-    thumb: thumb('1485676965-0cc2f8f641fc9e7f64fa7b6bcb31e989ef8bf85745b3c362a794a6ad56efa7ef'),
-    summary: 'Boboli — I Change, a commercial for Boboli directed by Javier Cano Larumbe. Agency Soon In Tokyo, produced by Mamma Team (2022).',
-    credits: [['Directed by', 'Javier Cano Larumbe'], ['Agency', 'Soon In Tokyo'], ['Produced by', 'Mamma Team']], laurels: [] },
-
   { slug: 'maragua-studio-saphi', title: 'Maragua Studio — Saphi', brand: 'Maragua Studio', group: 'commercial', kind: 'Fashion film', genre: 'Dance', year: 2022, length: '2 min 35',
     vimeo: '698590978', seconds: 155, uploaded: '2022-04-12',
     thumb: thumb('1428616436-3389cf3252a70bae03386bf556ac6c90d51aaca09b3cc509780c8e9d5fd8f651'),
     synopsis: 'Saphi is an adventure to our origins, back to our roots and the deepest of our essence. A vision of free femininity in a journey which connects our inner selves through nature and the world around us.',
     summary: 'Saphi, a fashion film for Maragua Studio written and directed by Javier Cano Larumbe, with dancer Paula Losada (2022).',
     credits: [['Directed by', 'Javier Cano Larumbe'], ['Dancer', 'Paula Losada'], ['Produced by', 'whitemoose']], laurels: [] },
-
-  { slug: 'caixa-research-institute', title: 'Fundación La Caixa — Caixa Research Institute', brand: 'Fundación La Caixa', group: 'commercial', kind: 'Commercial', genre: 'Institutional', year: 2026, length: '4 min 02',
-    vimeo: '1227858162', seconds: 242, uploaded: '2026-09-17',
-    thumb: thumb('2202194831-7a514a643818bc0a612b1201f5a6c597b091ea417cf21fee0020269b3e5ae869'),
-    summary: 'Caixa Research Institute, a film for Fundación La Caixa directed by Javier Cano Larumbe and produced by El Estudio (2026).',
-    credits: [['Directed by', 'Javier Cano Larumbe'], ['Produced by', 'El Estudio']], laurels: [] },
 
   { slug: 'boboli-the-bench-where-we-all-fit', title: 'Boboli — The Bench Where We All Fit', brand: 'Boboli', group: 'commercial', kind: 'Commercial', genre: 'Kids fashion', year: 2024, length: '1 min 33',
     vimeo: '899795066', seconds: 93, uploaded: '2024-01-04',
