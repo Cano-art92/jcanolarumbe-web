@@ -144,6 +144,7 @@
   .contact .who{display:grid; grid-template-columns:repeat(2, auto); justify-content:start; gap:28px 72px}
   .contact .who h3{margin:0 0 6px; font-weight:400; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--mute)}
   .contact .who p{margin:0; font-size:13px; line-height:1.9}
+  .contact .who p + p{margin-top:16px}
   .contact .who a{border-bottom:1px solid var(--rule); transition:border-color .2s, color .2s}
   .contact .who a:hover{color:var(--grease); border-color:var(--grease)}
 

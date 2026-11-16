@@ -30,7 +30,9 @@ const PERSON = {
   alumniOf: { '@type': 'EducationalOrganization', name: 'ESCAC – Escola Superior de Cinema i Audiovisuals de Catalunya' },
   knowsAbout: ['Film direction', 'Short films', 'Commercials', 'Fashion films', 'Music videos', 'Screenwriting'],
   sameAs: [SITE.instagram.url, SITE.vimeo.url, SITE.imdb, SITE.agency.url],
-  contactPoint: { '@type': 'ContactPoint', contactType: 'Representation', name: SITE.agency.name, email: SITE.agency.email, url: 'https://ipdtalent.com/' },
+  contactPoint: SITE.agencies.flatMap(a => a.people
+    ? a.people.map(m => ({ '@type': 'ContactPoint', contactType: 'Representation', name: `${m.name}, ${a.name}`, email: m.email, telephone: `+1-${m.phone}`, url: a.url }))
+    : [{ '@type': 'ContactPoint', contactType: 'Representation', name: a.name, email: a.email, url: 'https://ipdtalent.com/' }]),
 };
 const WEBSITE = { '@type': 'WebSite', '@id': `${U}/#website`, url: `${U}/`, name: SITE.name, inLanguage: 'en', publisher: { '@id': `${U}/#person` } };
 
@@ -80,7 +82,7 @@ function jsonld(route) {
 
 /* ---------------- page shell ---------------- */
 const HOME_DESC = `${SITE.name} is a film director based in Barcelona. Short films, including the horror short Vacío (Void), executive produced by J.A. Bayona, and commercials for Zara, Cupra, Boboli and Fundació la Caixa.`;
-const ABOUT_DESC = `About ${SITE.name}, film director and screenwriter based in Barcelona. Represented by ${SITE.agency.name} (${SITE.agency.email}).`;
+const ABOUT_DESC = `About ${SITE.name}, film director and screenwriter based in Barcelona. Represented by ${SITE.agencies.map(a => a.name).join(' and ')}.`;
 
 function page(route) {
   const p = route.project;
@@ -158,7 +160,7 @@ ${css}</style>
 
 <footer class="foot">
   <span>© ${esc(SITE.name)} ${new Date().getFullYear()}</span>
-  <a href="/about/#contact">Represented by ${esc(SITE.agency.name)}</a>
+  <a href="/about/#contact">Represented by ${SITE.agencies.map(a => esc(a.name)).join(' &amp; ')}</a>
 </footer>
 
 <script type="module" src="/js/app.js"></script>
@@ -211,14 +213,14 @@ Sitemap: ${U}/sitemap.xml
 const strip = h => h.replace(/<[^>]+>/g, '');
 writeFileSync(`${OUT}/llms.txt`, `# ${SITE.name}
 
-> ${SITE.name} (also credited as ${SITE.shortName} and J. Cano Larumbe) is a film director and screenwriter based in Barcelona, Spain. He directed the horror short film Vacío (Void, 2025), executive produced by J.A. Bayona, and commercials and fashion films for Zara, Cupra, Boboli, Fundació la Caixa and Maragua Studio. He is represented by ${SITE.agency.name}.
+> ${SITE.name} (also credited as ${SITE.shortName} and J. Cano Larumbe) is a film director and screenwriter based in Barcelona, Spain. He directed the horror short film Vacío (Void, 2025), executive produced by J.A. Bayona, and commercials and fashion films for Zara, Cupra, Boboli, Fundació la Caixa, Maragua Studio and Brownie. He is represented by ${SITE.agencies.map(a => a.name).join(' and ')}.
 
 ## About
 
 ${SITE.bio.map(strip).join('\n\n')}
 
 - Full profile: ${U}/about/
-- Representation: ${SITE.agency.name}, ${SITE.agency.email} (${SITE.agency.url})
+${SITE.agencies.map(a => `- Representation: ${a.name}${a.email ? `, ${a.email}` : ''}${(a.people || []).map(m => `; ${m.name}, ${m.phone}, ${m.email}`).join('')} (${a.url})`).join('\n')}
 - Instagram: ${SITE.instagram.url}
 - Vimeo (all films): ${SITE.vimeo.url}
 - IMDb: ${SITE.imdb}

@@ -81,8 +81,10 @@ export function renderAbout(SITE) {
         <div class="who">
           <div>
             <h3>Representation</h3>
-            <p>${esc(SITE.agency.name)}<br>
-            <a href="mailto:${SITE.agency.email}">${esc(SITE.agency.email)}</a></p>
+            ${SITE.agencies.map(a => `<p>${esc(a.name)}${a.email ? `<br>
+            <a href="mailto:${a.email}">${esc(a.email)}</a>` : ''}${(a.people || []).map(m => `<br>
+            ${esc(m.name)} · <a href="tel:+1${m.phone.replace(/\D/g, '')}">${esc(m.phone)}</a><br>
+            <a href="mailto:${m.email}">${esc(m.email)}</a>`).join('')}</p>`).join('\n            ')}
           </div>
           <div>
             <h3>Elsewhere</h3>

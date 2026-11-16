@@ -11,6 +11,14 @@ export const SITE = {
   vimeo: { label: 'vimeo.com/jcanolarumbe', url: 'https://vimeo.com/jcanolarumbe' },
   imdb: 'https://www.imdb.com/name/nm6407866/',           // linked from his agency profile — confirm
   agency: { name: 'IPD Talent Agency', email: 'hello@ipdtalent.com', url: 'https://ipdtalent.com/talentos/javier-cano/' },
+  /* All representation, in the order shown on the About page. */
+  agencies: [
+    { name: 'IPD Talent Agency', email: 'hello@ipdtalent.com', url: 'https://ipdtalent.com/talentos/javier-cano/' },
+    { name: 'Anonymous Content', url: 'https://www.anonymouscontent.com/', people: [
+      { name: 'Jake Dillman', phone: '310-558-6234', email: 'jdillman@anonymouscontent.com' },
+      { name: 'Ian McKnight', phone: '424-361-3410', email: 'imcknight@anonymouscontent.com' },
+    ] },
+  ],
   /* About text: Javier's own words (13/10/2026). */
   bio: [
     'Javier Cano Larumbe is a film director and screenwriter based in Barcelona. He studied film direction at ESCAC, where he made his short film <em>Interferencias</em>.',
@@ -62,6 +70,12 @@ export const PROJECTS = [
     synopsis: 'Saphi is an adventure to our origins, back to our roots and the deepest of our essence. A vision of free femininity in a journey which connects our inner selves through nature and the world around us.',
     summary: 'Saphi, a fashion film for Maragua Studio written and directed by Javier Cano Larumbe, with dancer Paula Losada (2022).',
     credits: [['Directed by', 'Javier Cano Larumbe'], ['Dancer', 'Paula Losada'], ['Produced by', 'whitemoose']], laurels: [] },
+
+  { slug: 'brownie-on-the-streets-of-seoul', title: 'Brownie — On the Streets of Seoul', brand: 'Brownie', group: 'commercial', kind: 'Commercial', genre: 'Fashion', year: 2026, length: '1 min 07',
+    vimeo: '1233758513', seconds: 67, uploaded: '2026-10-07',
+    thumb: thumb('2209540815-f179f179b9ef82d05f9899548517cb8a601b4262535343d0136ae1c3276d7175'),
+    summary: 'Brownie — On the Streets of Seoul, a commercial for Brownie directed by Javier Cano Larumbe (2026).',
+    credits: [['Directed by', 'Javier Cano Larumbe']], laurels: [] },
 
   { slug: 'monte-vista-drive-pale-blue-coal-black', title: 'Monte Vista Drive — Pale Blue / Coal Black', group: 'music', kind: 'Music video', genre: 'Indie', year: 2024, length: '2 min 11',
     vimeo: '899890899', seconds: 131, uploaded: '2024-01-04',
